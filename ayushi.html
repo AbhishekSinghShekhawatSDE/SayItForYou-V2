@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Message for Ayushi | SayItForYou</title>
+<link rel="icon" href="assets/favicon.png" type="image/x-icon">
+<meta name="description" content="A special message delivered with care by SayItForYou.">
+<meta name="author" content="SayItForYou">
+<link rel="canonical" href="https://www.sayitforyou.fun/ayushi.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+:root {
+--bg-color: #fdf2f8; /* Soft pink background */
+--text-color: #4a044e; /* Deep purple */
+--primary-color: #db2777; /* Vibrant pink */
+--primary-hover: #be185d;
+--card-bg: #ffffff;
+--border-color: #fbcfe8;
+--font-family: 'Inter', -apple-system, sans-serif;
+--header-height: 70px;
+}
+
+* {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        font-family: var(--font-family);
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        line-height: 1.7;
+        overflow-x: hidden;
+    }
+
+    .container {
+        width: 100%;
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: var(--header-height);
+        z-index: 1000;
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .header-container {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+        color: var(--primary-color);
+        font-weight: 700;
+        font-size: 1.2rem;
+    }
+    
+    .logo img {
+        height: 28px;
+    }
+
+    .nav-btn {
+        background-color: var(--primary-color);
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 500;
+        border: none;
+        cursor: pointer;
+        transition: background-color .3s, transform .2s;
+    }
+
+    .nav-btn:hover {
+        background-color: var(--primary-hover);
+        transform: translateY(-2px);
+    }
+    
+    .hero {
+        position: relative;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: var(--text-color);
+        padding: var(--header-height) 20px 60px;
+        overflow: hidden;
+    }
+
+    .hero-content h1 {
+        font-family: 'Playfair Display', serif;
+        font-size: 3.5rem;
+        color: var(--primary-color);
+        margin-bottom: 1rem;
+        animation: fadeInDown 1s ease-out;
+    }
+
+    .hero-content p {
+        font-size: 1.25rem;
+        max-width: 600px;
+        margin: 0 auto 2rem auto;
+        color: #86198f; /* Lighter purple */
+        animation: fadeInUp 1s ease-out 0.5s;
+        animation-fill-mode: both;
+    }
+
+    .scroll-down-indicator {
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        animation: bounce 2s infinite;
+        color: var(--primary-color);
+        font-size: 1rem;
+        font-weight: 500;
+    }
+
+    .scroll-down-indicator svg {
+        width: 24px;
+        height: 24px;
+        margin: 0 auto;
+        display: block;
+    }
+    
+    #message-section {
+        padding: 100px 0;
+        background-color: #fff;
+    }
+
+    .message-grid {
+        display: grid;
+        /* This is the key change: forces a single column */
+        grid-template-columns: 1fr; 
+        gap: 2rem;
+        /* Adjusted max-width for better readability in a single column */
+        max-width: 800px; 
+        margin: 0 auto;
+    }
+
+    .message-tile {
+        background: var(--card-bg);
+        padding: 2.5rem;
+        border-radius: 20px;
+        border-left: 5px solid var(--primary-color);
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+
+    .message-tile.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .message-tile p {
+        font-size: 1.05rem;
+        color: var(--secondary-text-color, #4a044e);
+        margin-bottom: 1rem;
+    }
+
+    .message-tile p:last-child {
+        margin-bottom: 0;
+    }
+
+    .signature {
+        text-align: right;
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: var(--primary-color);
+        margin-top: 2rem;
+        font-family: 'Playfair Display', serif;
+    }
+
+    footer {
+        padding: 60px 20px;
+        border-top: 1px solid var(--border-color);
+        background: var(--bg-color);
+        text-align: center;
+    }
+    
+    .footer-bottom-line {
+        font-size: .9rem;
+        color: #6e6e73;
+    }
+    
+    .footer-bottom-line a {
+        color: var(--primary-color);
+        font-weight: 500;
+        text-decoration: none;
+    }
+
+    @keyframes fadeInDown {
+        from { opacity: 0; transform: translateY(-20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes bounce {
+        0%, 20%, 50%, 80%, 100% { transform: translate(-50%, 0); }
+        40% { transform: translate(-50%, -15px); }
+        60% { transform: translate(-50%, -5px); }
+    }
+
+    /* Heart background animation */
+    .heart-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        overflow: hidden;
+    }
+
+    .heart {
+        position: absolute;
+        list-style: none;
+        display: block;
+        width: 20px;
+        height: 20px;
+        background: rgba(219, 39, 119, 0.2);
+        animation: animateHeart 25s linear infinite;
+        bottom: -150px;
+    }
+
+    .heart::before,
+    .heart::after {
+        content: '';
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: rgba(219, 39, 119, 0.2);
+    }
+    .heart::before { top: -10px; left: 0; }
+    .heart::after { top: 0; left: -10px; }
+
+    .heart:nth-child(1) { left: 25%; width: 80px; height: 80px; animation-delay: 0s; }
+    .heart:nth-child(2) { left: 10%; width: 20px; height: 20px; animation-delay: 2s; animation-duration: 12s; }
+    .heart:nth-child(3) { left: 70%; width: 20px; height: 20px; animation-delay: 4s; }
+    .heart:nth-child(4) { left: 40%; width: 60px; height: 60px; animation-delay: 0s; animation-duration: 18s; }
+    .heart:nth-child(5) { left: 65%; width: 20px; height: 20px; animation-delay: 0s; }
+    .heart:nth-child(6) { left: 75%; width: 110px; height: 110px; animation-delay: 3s; }
+    .heart:nth-child(7) { left: 35%; width: 150px; height: 150px; animation-delay: 7s; }
+    .heart:nth-child(8) { left: 50%; width: 25px; height: 25px; animation-delay: 15s; animation-duration: 45s; }
+    .heart:nth-child(9) { left: 20%; width: 15px; height: 15px; animation-delay: 2s; animation-duration: 35s; }
+    .heart:nth-child(10) { left: 85%; width: 150px; height: 150px; animation-delay: 0s; animation-duration: 11s; }
+
+    @keyframes animateHeart {
+        0% { transform: translateY(0) rotate(0deg); opacity: 1; border-radius: 0; }
+        100% { transform: translateY(-1000px) rotate(720deg); opacity: 0; border-radius: 50%; }
+    }
+
+    @media (max-width: 768px) {
+        .hero-content h1 { font-size: 2.8rem; }
+        .hero-content p { font-size: 1.1rem; }
+        #message-section { padding: 80px 0; }
+    }
+</style>
+</head>
+<body>
+<header>
+<div class="container header-container">
+<a href="index.html" class="logo">
+<img src="assets/favicon.png" alt="Sayitforyou Logo Icon">
+<span>SayItForYou</span>
+</a>
+
+</div>
+</header>
+
+<main>
+    <section class="hero">
+        <div class="heart-bg">
+            <li class="heart"></li><li class="heart"></li><li class="heart"></li>
+            <li class="heart"></li><li class="heart"></li><li class="heart"></li>
+            <li class="heart"></li><li class="heart"></li><li class="heart"></li>
+            <li class="heart"></li>
+        </div>
+        <div class="hero-content container">
+            <h1>For Ayushi,</h1>
+            <p>Some words are best said from the heart. Here's a message, delivered with care.</p>
+        </div>
+        <a href="#message-section" class="scroll-down-indicator" aria-label="Scroll to message">
+            <span>Scroll Down</span>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5L12 21m0 0l-7.5-7.5M12 21V3" />
+            </svg>                  
+        </a>
+    </section>
+
+    <section id="message-section">
+        <div class="container">
+            <div class="message-grid">
+                <div class="message-tile">
+                    <p>Hey Ayushi,</p>
+                    <p>Please read this slowly and calmly. This is coming from a very real place in my heart.</p>
+                    <p>I’m not someone who opens up easily, but today I’m choosing to do that with you—because I trust you, and because the feelings I hold for you are genuine.</p>
+                </div>
+
+                <div class="message-tile">
+                    <p>I’m Abhishek. Since my school days, I’ve always searched for love, but never casually. I was always true to my feelings. I never believed in time-pass relationships or temporary attachments. For me, love has always been something deep, honest, loyal, and meaningful. But wherever I looked—school or college—I mostly found people chasing attention, jumping from one person to another, treating emotions like options. I thought things would change in college, that people would become more mature, but honestly, it felt like the same story. That’s why I never entered a relationship—not because I couldn’t, but because I didn’t want to compromise on what love means to me.</p>
+                </div>
+
+                <div class="message-tile">
+                    <p>There’s a small but important story from my past that shaped who I am today. I’m sharing this not for sympathy, but so you understand me better.</p>
+                    <p>In school, I once liked a girl. I never played games with her feelings. I cared genuinely—gave my time, effort, emotional support, and stood by her in every way I knew how. She liked me too, but she was immature and easily influenced, often seeking attention without understanding its consequences. Because of that, she got trapped by a senior who misused her, and his friends were involved as well. She suffered a lot.</p>
+                    <p>Later, when she truly understood my worth, she came to me and told me everything. I wanted to help her, to stand up for her—but before anything could happen, she attempted suicide. Those seniors were arrested, and her family moved out of the city. That phase broke me deeply. I went into emotional silence for a long time. I never formed any bond after that. Technically, I don’t have an ex. I’ve never been in a relationship. That experience taught me how fragile emotions can be, and how important it is to protect someone’s heart.</p>
+                </div>
+
+                <div class="message-tile">
+                    <p>Because of that phase, I became someone who observes more, understands people deeply, and values emotional safety. You already know this about me—I’m simple, but also a thinker. A bit philosophical. I try to understand people instead of judging them. I care deeply for those who are mine. I don’t use social media much—not because I’m antisocial, but because I prefer real conversations over fake validations. I believe a person’s value lies in their character, not their online presence.</p>
+                </div>
+
+                <div class="message-tile">
+                    <p>Now coming to you…</p>
+                    <p>About a year ago in college, I noticed you once with some people. I liked you then, but I didn’t know you, so I never approached. Later, I saw you on LinkedIn and tried reaching out regarding a project (sayitforyou.fun). You didn’t reply—and honestly, that was okay. I never expected anything and moved on quietly.</p>
+                </div>
+
+                <div class="message-tile">
+                    <p>Then something unexpected happened.</p>
+                    <p>I saw you again during a placement Google Meet. You were speaking, sharing your thoughts so confidently, sitting there so calmly. That moment stayed with me. It wasn’t loud or dramatic—it was just a soft realization. From that day onward, whenever I saw you in placement drives or meetings, even a single glance made my day feel lighter. I never thought I’d actually get a chance to know you.</p>
+                </div>
+
+                <div class="message-tile">
+                    <p>But destiny had other plans.</p>
+                    <p>When we got selected in the same drive, it felt unreal—like something I never dared to expect. Even then, I was scared to approach you—not because I lacked courage, but because I didn’t want to lose something precious before it even began. Over time, seeing you more, talking to you, and understanding you a little—I realized you’re not just beautiful, but genuinely kind and sweet. There’s a calmness about you that feels safe.</p>
+                </div>
+
+                <div class="message-tile">
+                    <p>Ayushi, what I feel for you is real. It’s not rushed. It’s not superficial. It’s not based on attraction alone. It’s based on respect, care, and emotional honesty. I don’t want to control you or rush you. I simply want to be someone who stands beside you, supports you, protects your peace, and values you deeply.</p>
+                </div>
+
+                <div class="message-tile">
+                    <p>Right now, more than anything, I care about your health. I know you’re going through a recovery phase, and all I truly pray for is your well-being. Once you’re completely better—100% healthy—I’d love to spend time with you. Maybe coffee, a movie, or dinner. Slowly. Naturally. At your comfort. No pressure. Everything else can wait.</p>
+                </div>
+                
+                <div class="message-tile">
+                    <p>I know I might sound a little silly sometimes, maybe like Nobita—but beneath that, I’m serious about emotions, responsibility, and love. Once you truly know me, you’ll understand that.</p>
+                    <p>I like you, Ayushi. Truly.</p>
+                    <p>This is just honesty—from my heart to yours.</p>
+                    <p>Take your time. I’ll respect whatever pace you choose.</p>
+                    <p class="signature">—Abhishek 💙</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="container">
+        <p class="footer-bottom-line">©2025 SayItForYou, a project by <a href="https://www.abhisheksinghshekhawat.com/" target="_blank">Abhishek Singh Shekhawat</a>.</p>
+    </div>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const tiles = document.querySelectorAll('.message-tile');
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        tiles.forEach(tile => {
+            observer.observe(tile);
+        });
+    });
+</script>
+</body>
+</html>
